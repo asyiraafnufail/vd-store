@@ -262,7 +262,7 @@ export default function Home() {
             VD Phone Store
           </span>
           <span className="text-xs" style={{ color: 'var(--color-text-on-dark)', opacity: 0.4 }}>
-            &copy; {new Date().getFullYear()} VD Phone Store. All rights reserved.
+            &copy; 2026 VD Phone Store. All rights reserved.
           </span>
         </div>
       </footer>
