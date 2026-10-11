@@ -9,13 +9,13 @@ const features = [
   { title: 'Harga Transparan', desc: 'Tidak ada biaya tersembunyi. Harga yang kami tampilkan adalah harga final.' },
   { title: 'Kondisi Teruji', desc: 'Setiap unit dicek secara menyeluruh sebelum sampai ke tangan Anda.' },
   { title: 'Garansi Toko', desc: 'Semua produk bergaransi toko untuk ketenangan pikiran Anda.' },
-  { title: 'Pengiriman Cepat', desc: 'Order hari ini, dikirim hari ini ke seluruh Indonesia.' },
+  { title: 'Pengiriman Fleksibel', desc: 'Melayani COD, antar ke alamat Anda, dan opsi pengiriman lainnya.' },
 ]
 
 const steps = [
   { num: '01', title: 'Pilih Produk', desc: 'Temukan iPhone atau Samsung yang sesuai kebutuhan dari katalog kami.' },
   { num: '02', title: 'Hubungi Kami', desc: 'Chat langsung via WhatsApp untuk info detail, kondisi, dan negosiasi harga.' },
-  { num: '03', title: 'Terima Pesanan', desc: 'Bayar dan produk dikirim ke alamat Anda dengan aman.' },
+  { num: '03', title: 'Terima Pesanan', desc: 'Buat jadwal COD atau tunggu pengiriman ke alamat Anda.' },
 ]
 
 const testimonials = [
