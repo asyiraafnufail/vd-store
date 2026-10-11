@@ -32,25 +32,44 @@ export default function Home() {
 
       {/* HERO — putih, 2 kolom */}
       <section className="bg-white px-6 md:px-12 lg:px-20 min-h-[92vh] flex items-center">
-        <div className="max-w-6xl mx-auto w-full flex flex-col md:flex-row items-center gap-10 md:gap-16 py-10">
+        <div className="max-w-6xl mx-auto w-full flex flex-col md:flex-row items-center gap-8 md:gap-16 py-10">
 
-          {/* Kiri — teks */}
-          <div className="flex-1 flex flex-col items-start text-left max-w-lg">
+          {/* Atas mobile — foto HP */}
+          <div className="flex-1 flex items-center justify-center w-full order-1 md:order-2">
+            <div className="relative w-64 sm:w-80 md:w-[28rem] lg:w-[32rem]" style={{ aspectRatio: '3/4' }}>
+              <Image
+                src="/products/17.png"
+                alt="iPhone VD Phone Store"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+          </div>
+
+          {/* Bawah mobile — teks */}
+          <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left max-w-lg order-2 md:order-1">
             <p
-              className="text-xs font-semibold tracking-[0.2em] uppercase mb-5"
-              style={{ color: 'var(--color-accent)' }}
+              className="font-extrabold tracking-[0.1em] uppercase mb-3"
+              style={{ fontSize: 'clamp(1.125rem, 3vw, 1.75rem)', color: 'var(--color-accent)' }}
+            >
+              VD PHONE STORE
+            </p>
+            <p
+              className="text-xs font-medium tracking-wide uppercase mb-5"
+              style={{ color: 'var(--color-text-muted)' }}
             >
               iPhone &amp; Samsung — Baru dan Second
             </p>
             <h1
-              className="font-extrabold leading-[1.08] mb-5"
-              style={{ fontSize: 'clamp(2.25rem, 6vw, 4rem)', color: 'var(--color-text-primary)' }}
+              className="font-extrabold leading-[1.05] mb-5"
+              style={{ fontSize: 'clamp(1.875rem, 5vw, 3rem)', color: 'var(--color-text-primary)' }}
             >
               Smartphone<br />Terbaik,<br />Harga Terjangkau.
             </h1>
             <p
               className="mb-10 leading-relaxed max-w-sm"
-              style={{ fontSize: 'clamp(0.9rem, 1.8vw, 1rem)', color: 'var(--color-text-secondary)' }}
+              style={{ fontSize: 'clamp(0.8125rem, 1.6vw, 0.9375rem)', color: 'var(--color-text-secondary)' }}
             >
               Pilihan iPhone dan Samsung — baru maupun second — kondisi teruji, garansi toko, harga transparan.
             </p>
@@ -87,19 +106,6 @@ export default function Home() {
               >
                 Hubungi Kami
               </a>
-            </div>
-          </div>
-
-          {/* Kanan — foto HP */}
-          <div className="flex-1 flex items-center justify-center w-full">
-            <div className="relative w-72 sm:w-96 md:w-[28rem] lg:w-[32rem]" style={{ aspectRatio: '3/4' }}>
-              <Image
-                src="/products/17.png"
-                alt="iPhone VD Phone Store"
-                fill
-                className="object-contain"
-                priority
-              />
             </div>
           </div>
 

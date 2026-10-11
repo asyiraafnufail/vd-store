@@ -13,8 +13,10 @@ Tidak ada background gelap atau gradient di konten. Putih konsisten dari hero sa
 
 ### Hero Layout
 - 2 kolom di desktop: kiri teks + CTA (max-w-lg), kanan foto HP
-- Mobile: kolom tunggal, teks dulu (atas), foto di bawah — `flex-col md:flex-row`
-- Foto: `w-72 sm:w-96 md:w-[28rem] lg:w-[32rem]`, aspect-ratio 3/4
+- Mobile: kolom tunggal, foto di atas, teks di bawah — `flex-col md:flex-row`
+  Foto pakai `order-1 md:order-2`, teks pakai `order-2 md:order-1`
+- Desktop: 2 kolom, foto kanan, teks kiri
+- Foto: `w-64 sm:w-80 md:w-[28rem] lg:w-[32rem]`, aspect-ratio 3/4
 - Teks kiri: eyebrow kecil amber, headline besar tegas, subtext singkat, 2 tombol
 - Tidak ada gradient, tidak ada glow, tidak ada dekorasi
 
@@ -196,7 +198,7 @@ Scroll reveal: opacity 0 ke 1, translateY 12px ke 0, 350ms ease — CSS @keyfram
 
 ## Layout Grid
 ```
-Mobile:  1 kolom, padding 16px
+Mobile:  2 kolom horizontal, padding 16px, gap 16px
 Tablet:  2 kolom, padding 24px
 Desktop: 3-4 kolom, max-width 1280px, margin auto, padding 32px
 ```
