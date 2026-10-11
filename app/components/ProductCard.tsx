@@ -18,7 +18,7 @@ const conditionColor: Record<Product['condition'], string> = {
 export default function ProductCard({ product }: { product: Product }) {
   return (
     <article
-      className="bg-white flex flex-col overflow-hidden transition-all duration-200 hover:-translate-y-0.5"
+      className="bg-white h-full flex flex-row overflow-hidden transition-all duration-200 hover:-translate-y-0.5"
       style={{
         border: '1px solid var(--color-border)',
         borderRadius: 'var(--radius-md)',
@@ -33,100 +33,113 @@ export default function ProductCard({ product }: { product: Product }) {
     >
       {/* Foto */}
       <div
-        className="relative w-full"
-        style={{ aspectRatio: '4/3', background: 'var(--color-surface-alt)' }}
+        className="relative flex-shrink-0"
+        style={{
+          width: 'clamp(7rem, 30vw, 13rem)',
+          aspectRatio: '4/5',
+          background: 'var(--color-surface-alt)',
+        }}
       >
         <Image
           src={product.image}
           alt={product.name}
           fill
           className="object-cover"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          sizes="(max-width: 640px) 30vw, 208px"
         />
       </div>
 
       {/* Info */}
-      <div className="p-5 flex flex-col gap-2 flex-1">
-        {/* Merek */}
-        <span
-          className="text-xs font-medium tracking-widest uppercase"
-          style={{ color: 'var(--color-text-muted)' }}
+      <div
+        className="flex flex-col flex-1 justify-between"
+        style={{
+          padding: 'clamp(0.75rem, 3vw, 1.25rem)',
+          gap: 'clamp(0.5rem, 2vw, 0.75rem)',
+        }}
+      >
+        <div
+          className="flex flex-col"
+          style={{ gap: 'clamp(0.125rem, 0.8vw, 0.25rem)' }}
         >
-          {product.brand}
-        </span>
-
-        {/* Nama */}
-        <h3
-          className="font-semibold leading-snug"
-          style={{ fontSize: '1rem', color: 'var(--color-text-primary)' }}
-        >
-          {product.name}
-        </h3>
-
-        {/* Kondisi */}
-        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+          {/* Merek */}
           <span
-            className="text-xs font-semibold tracking-widest uppercase"
-            style={{ color: conditionColor[product.condition] }}
+            className="font-medium tracking-widest uppercase"
+            style={{ fontSize: 'clamp(0.625rem, 2.5vw, 0.75rem)', color: 'var(--color-text-muted)' }}
+          >
+            {product.brand}
+          </span>
+
+          {/* Nama */}
+          <h3
+            className="font-semibold leading-snug"
+            style={{ fontSize: 'clamp(0.9375rem, 3.8vw, 1.5rem)', color: 'var(--color-text-primary)' }}
+          >
+            {product.name}
+          </h3>
+
+          {/* Kondisi */}
+          <span
+            className="font-semibold tracking-widest uppercase"
+            style={{ fontSize: 'clamp(0.625rem, 2.5vw, 0.75rem)', color: conditionColor[product.condition] }}
           >
             {product.condition}
           </span>
-          {product.quality && (
-            <>
-              <span style={{ color: 'var(--color-border)' }}>·</span>
-              <span
-                className="text-xs font-medium uppercase"
-                style={{ color: 'var(--color-text-muted)' }}
-              >
-                {product.quality}
-              </span>
-            </>
-          )}
+
+          {/* Quality */}
+          <span
+            className="font-medium uppercase"
+            style={{ fontSize: 'clamp(0.625rem, 2.5vw, 0.75rem)', color: 'var(--color-text-muted)' }}
+          >
+            {product.quality}
+          </span>
+
+          {/* Storage + Garansi */}
+          <p
+            style={{ fontSize: 'clamp(0.625rem, 2.5vw, 0.75rem)', color: 'var(--color-text-muted)' }}
+          >
+            {product.storage} — Garansi {product.warranty}
+          </p>
         </div>
 
-        {/* Storage + Garansi */}
-        <p
-          className="text-xs"
-          style={{ color: 'var(--color-text-muted)' }}
+        {/* Harga + CTA */}
+        <div
+          className="flex flex-col"
+          style={{ gap: 'clamp(0.375rem, 1.5vw, 0.5rem)' }}
         >
-          {product.storage} &nbsp;—&nbsp; Garansi {product.warranty}
-        </p>
+          <p
+            className="font-bold leading-none"
+            style={{ fontSize: 'clamp(0.9375rem, 4vw, 1.5rem)', color: 'var(--color-text-primary)' }}
+          >
+            {fmt(product.price)}
+          </p>
 
-        {/* Harga */}
-        <p
-          className="font-bold mt-2"
-          style={{ fontSize: '1.25rem', color: 'var(--color-text-primary)' }}
-        >
-          {fmt(product.price)}
-        </p>
-
-        {/* CTA */}
-        <a
-          href={product.waLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-2 flex items-center justify-center font-bold transition-colors duration-200"
-          style={{
-            background: 'var(--color-accent)',
-            color: 'var(--color-text-on-accent)',
-            borderRadius: 'var(--radius-md)',
-            padding: '11px 0',
-            fontSize: '0.8125rem',
-            letterSpacing: '0.04em',
-            textTransform: 'uppercase',
-            boxShadow: 'var(--shadow-cta)',
-          }}
-          onMouseEnter={(e) =>
-            ((e.currentTarget as HTMLElement).style.background =
-              'var(--color-accent-hover)')
-          }
-          onMouseLeave={(e) =>
-            ((e.currentTarget as HTMLElement).style.background =
-              'var(--color-accent)')
-          }
-        >
-          Tanya Produk
-        </a>
+          <a
+            href={product.waLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center font-bold transition-colors duration-200"
+            style={{
+              background: 'var(--color-accent)',
+              color: 'var(--color-text-on-accent)',
+              borderRadius: 'var(--radius-md)',
+              padding: 'clamp(0.5rem, 2vw, 0.625rem) 0',
+              fontSize: 'clamp(0.625rem, 2.5vw, 0.875rem)',
+              letterSpacing: '0.04em',
+              textTransform: 'uppercase',
+              boxShadow: 'var(--shadow-cta)',
+            }}
+            onMouseEnter={(e) =>
+              ((e.currentTarget as HTMLElement).style.background =
+                'var(--color-accent-hover)')
+            }
+            onMouseLeave={(e) =>
+              ((e.currentTarget as HTMLElement).style.background =
+                'var(--color-accent)')
+            }
+          >
+            Tanya Produk
+          </a>
+        </div>
       </div>
     </article>
   )

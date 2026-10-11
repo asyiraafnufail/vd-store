@@ -5,7 +5,7 @@ export type Product = {
   brand: 'Apple' | 'Samsung'
   storage: string
   condition: 'Baru' | 'Second'
-  quality?: 'Mulus' | 'Normal' | 'Bekas Wajar'
+  quality: 'Mulus' | 'Normal' | 'Brand New'
   warranty: 'Resmi' | 'Bea Cukai' | 'All Operator'
   price: number
   image: string
@@ -23,6 +23,7 @@ export const products: Product[] = [
     brand: 'Apple',
     storage: '128GB',
     condition: 'Baru',
+    quality: 'Brand New',
     warranty: 'Resmi',
     price: 13_500_000,
     image: '/products/iphone15.svg',
@@ -46,6 +47,7 @@ export const products: Product[] = [
     brand: 'Samsung',
     storage: '256GB',
     condition: 'Baru',
+    quality: 'Brand New',
     warranty: 'Resmi',
     price: 12_800_000,
     image: '/products/s24.svg',

@@ -54,7 +54,7 @@ export default function Catalog({ products }: { products: Product[] }) {
 
       {/* Grid */}
       {filtered.length > 0 ? (
-        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 gap-4 md:gap-6 max-w-3xl mx-auto w-full">
           {filtered.map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}
