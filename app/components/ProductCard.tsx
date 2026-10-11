@@ -104,13 +104,15 @@ export default function ProductCard({ product }: { product: Product }) {
         {/* Harga + CTA */}
         <div
           className="flex flex-col"
-          style={{ gap: 'clamp(0.375rem, 1.5vw, 0.5rem)' }}
+          style={{ gap: 'clamp(0.625rem, 2.5vw, 0.875rem)' }}
         >
           <p
-            className="font-bold leading-none"
-            style={{ fontSize: 'clamp(0.9375rem, 4vw, 1.5rem)', color: 'var(--color-text-primary)' }}
+            className="font-bold leading-tight"
+            style={{ fontSize: 'clamp(0.8125rem, 3.5vw, 1.25rem)', color: 'var(--color-text-primary)' }}
           >
-            {fmt(product.price)}
+            {product.priceMax
+              ? `${fmt(product.price)} — ${fmt(product.priceMax)}`
+              : fmt(product.price)}
           </p>
 
           <a

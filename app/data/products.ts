@@ -8,6 +8,7 @@ export type Product = {
   quality: 'Mulus' | 'Normal' | 'Brand New'
   warranty: 'Resmi' | 'Bea Cukai' | 'All Operator'
   price: number
+  priceMax?: number
   image: string
   waLink: string
 }
@@ -38,6 +39,7 @@ export const products: Product[] = [
     quality: 'Mulus',
     warranty: 'Resmi',
     price: 6_200_000,
+    priceMax: 6_500_000,
     image: '/products/iphone13.svg',
     waLink: msg('iPhone 13 128GB'),
   },
@@ -62,6 +64,7 @@ export const products: Product[] = [
     quality: 'Normal',
     warranty: 'Bea Cukai',
     price: 7_500_000,
+    priceMax: 7_900_000,
     image: '/products/s23.svg',
     waLink: msg('Samsung Galaxy S23 256GB'),
   },
