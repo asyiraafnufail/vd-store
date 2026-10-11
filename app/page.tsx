@@ -42,6 +42,7 @@ export default function Home() {
                 alt="iPhone VD Phone Store"
                 fill
                 className="object-contain"
+                sizes="(max-width: 768px) 80vw, 50vw"
                 priority
               />
             </div>
