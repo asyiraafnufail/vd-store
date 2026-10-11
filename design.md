@@ -1,9 +1,37 @@
 # Design System — VD Phone Store
+> **STATUS: LOCKED** — Jangan ubah nilai apapun di file ini tanpa diskusi eksplisit. Setiap perubahan harus diimplementasi serentak di globals.css dan semua komponen.
 
-## Filosofi
-Elegant, minimalist, colorful-tapi-terkontrol.  
-Satu warna aksen dominan. Warna kedua hanya untuk state/badge.  
-Ruang putih banyak. Tipografi tegas. Tidak ramai.
+## Background Layout (LOCKED)
+
+```
+Hero:                 #FFFFFF — putih, layout 2 kolom (teks kiri, foto kanan)
+Semua section tengah: #FFFFFF — putih, dibedakan border-top 1px #E2E2E2
+Footer:               #1A1A2E — navy
+```
+
+Tidak ada background gelap atau gradient di konten. Putih konsisten dari hero sampai atas footer.
+
+### Hero Layout
+- 2 kolom di desktop: kiri teks + CTA (max-w-lg), kanan foto HP
+- Mobile: kolom tunggal, teks dulu (atas), foto di bawah — `flex-col md:flex-row`
+- Foto: `w-72 sm:w-96 md:w-[28rem] lg:w-[32rem]`, aspect-ratio 3/4
+- Teks kiri: eyebrow kecil amber, headline besar tegas, subtext singkat, 2 tombol
+- Tidak ada gradient, tidak ada glow, tidak ada dekorasi
+
+### Responsive Padding (semua section)
+```
+Mobile:  py-14 px-4
+Desktop: md:py-20 md:px-8
+Hero:    py-16 md:py-24 px-6 md:px-12 lg:px-20
+```
+
+### Font Size — semua heading pakai clamp()
+```
+Section heading:  clamp(1.25rem, 3vw, 1.5rem)
+Hero headline:    clamp(2.25rem, 6vw, 4rem)
+CTA heading:      clamp(1.5rem, 4vw, 2.25rem)
+Step number:      clamp(1.75rem, 4vw, 2.25rem)
+```
 
 ---
 
@@ -11,112 +39,100 @@ Ruang putih banyak. Tipografi tegas. Tidak ramai.
 
 ### Primary — Deep Navy
 ```
---color-primary:     #1A1A2E   /* background gelap, header */
---color-primary-mid: #16213E   /* card dark, section alt */
---color-primary-soft:#0F3460   /* hover state, divider */
+--color-primary:     #1A1A2E   /* background gelap, header, footer */
+--color-primary-mid: #16213E   /* section alt gelap */
+--color-primary-soft:#0F3460   /* gradient, hover dark */
 ```
 
-### Accent — Amber Gold ⚡
+### Accent — Amber Gold
 ```
---color-accent:      #F5A623   /* CTA button, badge, highlight */
+--color-accent:      #F5A623   /* CTA button, highlight harga, underline aktif */
 --color-accent-hover:#E09612   /* button hover */
---color-accent-soft: #FFF3DC   /* accent bg ringan di light mode */
+--color-accent-soft: #FFF8EC   /* bg section ringan berbasis amber */
 ```
 
 ### Neutral
 ```
---color-surface:     #FAFAFA   /* background halaman (light) */
---color-surface-alt: #F2F2F2   /* card background, section stripe */
---color-border:      #E0E0E0   /* divider, card border */
+--color-surface:     #FAFAFA   /* background halaman */
+--color-surface-alt: #F4F4F4   /* section stripe */
+--color-border:      #E2E2E2   /* divider, card border */
 ```
 
 ### Text
 ```
---color-text-primary:   #1A1A2E   /* heading */
---color-text-secondary: #555770   /* subtext, keterangan */
---color-text-muted:     #9B9BAD   /* placeholder, label kecil */
---color-text-on-dark:   #FAFAFA   /* teks di atas primary bg */
---color-text-on-accent: #1A1A2E   /* teks di atas accent (gelap agar terbaca) */
+--color-text-primary:   #111118   /* heading */
+--color-text-secondary: #52525B   /* body, keterangan */
+--color-text-muted:     #A1A1AA   /* label kecil, placeholder */
+--color-text-on-dark:   #F8F8F8   /* teks di atas navy */
+--color-text-on-accent: #111118   /* teks di atas amber */
 ```
 
-### Status / Badge
+### Status
 ```
---color-badge-hot:   #E8443A   /* "Terlaris" — merah tegas */
---color-badge-low:   #2ECC71   /* "Stok Terbatas" — hijau */
---color-success:     #2ECC71
---color-error:       #E8443A
+--color-new:    #1A1A2E   /* label "Baru" — navy solid */
+--color-second: #52525B   /* label "Second" — abu netral */
 ```
 
 ---
 
-## Kontras WCAG AA (verified)
+## Kontras WCAG AA
 | Pasangan | Rasio | Status |
 |---|---|---|
-| `#FAFAFA` on `#1A1A2E` | ~16:1 | ✅ AAA |
-| `#1A1A2E` on `#F5A623` | ~8.2:1 | ✅ AAA |
-| `#1A1A2E` on `#FAFAFA` | ~16:1 | ✅ AAA |
-| `#555770` on `#FAFAFA` | ~7:1 | ✅ AA |
+| #F8F8F8 on #1A1A2E | ~15.8:1 | AAA |
+| #111118 on #F5A623 | ~8.1:1  | AAA |
+| #111118 on #FAFAFA | ~19.5:1 | AAA |
+| #52525B on #FAFAFA | ~7.0:1  | AA  |
 
 ---
 
 ## Typography (LOCKED)
 
 ```
-Font utama:  'Inter', system-ui, sans-serif
-Font aksen:  (tidak pakai font dekoratif — keep clean)
+Font utama:  'Montserrat', system-ui, sans-serif
+Font body:   'Montserrat', system-ui, sans-serif
 ```
+
+Montserrat dimuat via next/font/google — subsets latin, weights 400 500 600 700.
 
 ### Scale
 ```
---text-xs:   0.75rem  / 12px   — label, badge
---text-sm:   0.875rem / 14px   — body kecil, keterangan
---text-base: 1rem     / 16px   — body utama
---text-lg:   1.125rem / 18px   — sub-heading
---text-xl:   1.25rem  / 20px   — card title
---text-2xl:  1.5rem   / 24px   — section heading
---text-3xl:  1.875rem / 30px   — page heading (mobile hero)
---text-4xl:  2.25rem  / 36px   — hero heading (desktop)
---text-5xl:  3rem     / 48px   — hero max
+12px  — label kecil, caption
+14px  — body kecil, keterangan
+16px  — body utama
+18px  — sub-heading
+20px  — card title
+24px  — section heading
+30px  — page heading mobile
+36px  — hero heading desktop
+48px  — hero heading max
 ```
 
 ### Weight
 ```
-Regular: 400  — body
-Medium:  500  — label, nav
-Semibold:600  — card title, price
-Bold:    700  — heading utama
-```
-
----
-
-## Spacing Scale (Tailwind 4 default, locked)
-```
-4px  → 1 unit   (gap kecil)
-8px  → 2 units
-16px → 4 units  (padding card)
-24px → 6 units  (gap antar elemen)
-32px → 8 units  (section padding mobile)
-48px → 12 units (section padding desktop)
-64px → 16 units (hero padding)
+400  — body
+500  — label, nav, filter button
+600  — card title, harga, sub-heading
+700  — heading utama, CTA
+800  — hero headline
 ```
 
 ---
 
 ## Border Radius
 ```
---radius-sm:  6px    — badge, chip
---radius-md:  12px   — card
---radius-lg:  20px   — modal, hero card
---radius-full: 9999px — pill button, avatar
+--radius-sm:   4px    — label kondisi/tipe
+--radius-md:   10px   — card produk
+--radius-lg:   18px   — hero card, modal
+--radius-full: 9999px — pill button, filter aktif
 ```
 
 ---
 
 ## Shadow
 ```
---shadow-card: 0 2px 12px rgba(0,0,0,0.08)
---shadow-hover: 0 8px 24px rgba(0,0,0,0.14)
---shadow-cta:  0 4px 16px rgba(245,166,35,0.35)   /* glow amber di tombol */
+--shadow-card:  0 1px 8px rgba(0,0,0,0.07)
+--shadow-hover: 0 6px 24px rgba(0,0,0,0.12)
+--shadow-cta:   0 4px 14px rgba(245,166,35,0.30)
 ```
 
 ---
@@ -125,34 +141,46 @@ Bold:    700  — heading utama
 
 ### Button — CTA Utama
 ```
-bg: #F5A623  |  text: #1A1A2E  |  radius: 9999px
-padding: 14px 32px  |  font-weight: 600
-hover: bg #E09612, shadow glow amber
+bg: #F5A623  |  text: #111118  |  radius: var(--radius-md) = 10px
+padding: 13px 32px  |  font-weight: 700  |  letter-spacing: 0.02em  |  text-transform: uppercase  |  font-size: 13px
+hover: bg #E09612, shadow-cta
 ```
 
 ### Button — Secondary (outline)
 ```
-border: 2px solid #F5A623  |  text: #F5A623  |  bg: transparent
-hover: bg #FFF3DC
+border: 1.5px solid #F5A623  |  text: #F5A623  |  bg: transparent  |  radius: var(--radius-md) = 10px
+hover: bg #FFF8EC
+```
+
+### Filter Button
+```
+default: border 1.5px solid #E2E2E2, text #52525B, bg transparent, radius: var(--radius-md) = 10px
+active:  bg #1A1A2E, text #F8F8F8, border #1A1A2E
+font-weight: 500  |  font-size: 13px
 ```
 
 ### Product Card
 ```
-bg: #FFFFFF  |  border: 1px solid #E0E0E0  |  radius: 12px
+bg: #FFFFFF  |  border: 1px solid #E2E2E2  |  radius: var(--radius-md) = 10px
 shadow: shadow-card  |  hover: shadow-hover, translateY(-2px)
-Foto: aspect-ratio 4/3, object-fit cover
-Harga: font-semibold, color #1A1A2E, text-xl
-Badge: pill, text-xs, font-medium
+Foto: aspect-ratio 4/3, object-fit cover, bg #F4F4F4
+Padding info: 20px
+Urutan info:
+  1. Merek — text-xs uppercase tracking-widest, color #A1A1AA
+  2. Nama produk — font-weight 600, 16px, color #111118 (tanpa storage di nama, misal "iPhone 15")
+  3. Kondisi — text-xs uppercase font-weight 600, "BARU" navy, "SECOND" abu
+  4. Kualitas opsional — text-xs uppercase font-weight 500, color #A1A1AA (hanya untuk second)
+  5. Storage + garansi — text-xs, color #A1A1AA
+  6. Harga — font-weight 700, 20px, color #111118
+  7. CTA "Tanya Produk" — full-width, radius 10px, amber
 ```
 
-### Badge "Terlaris"
+### Label Kondisi/Tipe
 ```
-bg: #E8443A  |  text: #FAFAFA  |  radius: 9999px  |  padding: 2px 10px
-```
-
-### Badge "Stok Terbatas"
-```
-bg: #2ECC71  |  text: #1A1A2E  |  radius: 9999px  |  padding: 2px 10px
+Bukan pill berwarna. Pakai teks uppercase kecil dengan font-weight 600.
+"BARU" — color: #1A1A2E
+"SECOND" — color: #52525B
+Kualitas (Mulus/Normal/Bekas Wajar): text-xs uppercase, color #A1A1AA, dipisah dot
 ```
 
 ---
@@ -160,61 +188,59 @@ bg: #2ECC71  |  text: #1A1A2E  |  radius: 9999px  |  padding: 2px 10px
 ## Animasi
 ```
 Transition default: 200ms ease
-Hover card: transform translateY(-2px), 200ms ease
-Scroll reveal: opacity 0→1, translateY 16px→0, 400ms ease (CSS @keyframes)
-Tidak pakai JS animation library — CSS only
+Hover card: translateY(-2px), 200ms ease
+Scroll reveal: opacity 0 ke 1, translateY 12px ke 0, 350ms ease — CSS @keyframes, tanpa JS lib
 ```
 
 ---
 
 ## Layout Grid
 ```
-Mobile:  1 kolom, max-width 100%, padding 16px
-Tablet:  2 kolom katalog, padding 24px
-Desktop: 3–4 kolom katalog, max-width 1280px, margin auto
+Mobile:  1 kolom, padding 16px
+Tablet:  2 kolom, padding 24px
+Desktop: 3-4 kolom, max-width 1280px, margin auto, padding 32px
 ```
 
 ---
 
-## Implementasi (Tailwind 4 CSS vars)
-
-Tambahkan ke `app/globals.css`:
+## CSS Variables (globals.css)
 ```css
-@layer base {
-  :root {
-    --color-primary:      #1A1A2E;
-    --color-primary-mid:  #16213E;
-    --color-primary-soft: #0F3460;
-    --color-accent:       #F5A623;
-    --color-accent-hover: #E09612;
-    --color-accent-soft:  #FFF3DC;
-    --color-surface:      #FAFAFA;
-    --color-surface-alt:  #F2F2F2;
-    --color-border:       #E0E0E0;
-    --color-text-primary:   #1A1A2E;
-    --color-text-secondary: #555770;
-    --color-text-muted:     #9B9BAD;
-    --color-text-on-dark:   #FAFAFA;
-    --color-text-on-accent: #1A1A2E;
-    --color-badge-hot:    #E8443A;
-    --color-badge-low:    #2ECC71;
-    --radius-sm:   6px;
-    --radius-md:   12px;
-    --radius-lg:   20px;
-    --radius-full: 9999px;
-    --shadow-card:  0 2px 12px rgba(0,0,0,0.08);
-    --shadow-hover: 0 8px 24px rgba(0,0,0,0.14);
-    --shadow-cta:   0 4px 16px rgba(245,166,35,0.35);
-  }
+:root {
+  --color-primary:      #1A1A2E;
+  --color-primary-mid:  #16213E;
+  --color-primary-soft: #0F3460;
+  --color-accent:       #F5A623;
+  --color-accent-hover: #E09612;
+  --color-accent-soft:  #FFF8EC;
+  --color-surface:      #FAFAFA;
+  --color-surface-alt:  #F4F4F4;
+  --color-border:       #E2E2E2;
+  --color-text-primary:   #111118;
+  --color-text-secondary: #52525B;
+  --color-text-muted:     #A1A1AA;
+  --color-text-on-dark:   #F8F8F8;
+  --color-text-on-accent: #111118;
+  --radius-sm:   4px;
+  --radius-md:   10px;
+  --radius-lg:   18px;
+  --radius-full: 9999px;
+  --shadow-card:  0 1px 8px rgba(0,0,0,0.07);
+  --shadow-hover: 0 6px 24px rgba(0,0,0,0.12);
+  --shadow-cta:   0 4px 14px rgba(245,166,35,0.30);
 }
 ```
 
 ---
 
-## Aturan Penggunaan Warna (LOCKED — jangan ubah tanpa diskusi)
+## Aturan (LOCKED — wajib diikuti di setiap implementasi)
 
-1. **Amber hanya untuk aksen** — CTA, badge, highlight harga. Bukan background section besar.
-2. **Navy hanya untuk header/hero/footer** — bukan semua section.
-3. **Merah & hijau hanya untuk badge/status** — bukan dekorasi.
-4. **Maksimal 3 warna per komponen** — surface + text + satu aksen.
-5. **Ruang putih adalah elemen desain** — jangan isi semua space.
+1. **Tidak ada emoji di UI** — ikon boleh pakai SVG atau karakter Unicode netral.
+2. **Semua tombol pakai `--radius-md` (10px)** — tidak ada pill, tidak ada `--radius-sm` untuk tombol.
+3. **Amber hanya untuk CTA, nomor langkah, dan accent line** — bukan background section.
+4. **Navy hanya untuk hero dan footer** — semua section tengah background `#FFFFFF`.
+5. **Section tengah dibedakan dengan `border-top: 1px solid #E2E2E2`** — bukan background berbeda.
+6. **Label produk (Baru/Second/Garansi) pakai teks uppercase** — bukan pill berwarna.
+7. **Teks tombol CTA produk: "Tanya Produk"** — bukan "Tanya Harga" atau varian lain.
+8. **Maksimal 3 warna per komponen** — surface + text + satu aksen.
+9. **Ruang putih adalah elemen desain** — jangan isi semua space.
+10. **Nama produk di card tanpa storage** — tulis "iPhone 15", bukan "iPhone 15 128GB". Storage muncul di baris keterangan tersendiri.
