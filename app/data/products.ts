@@ -9,6 +9,7 @@ export type Product = {
   warranty: 'Resmi' | 'Bea Cukai' | 'All Operator'
   price: number
   priceMax?: number
+  /** Path lokal: /products/foto.jpg atau URL CDN: https://res.cloudinary.com/... */
   image: string
   waLink: string
 }
