@@ -165,16 +165,26 @@ font-weight: 500  |  font-size: 13px
 ```
 bg: #FFFFFF  |  border: 1px solid #E2E2E2  |  radius: var(--radius-md) = 10px
 shadow: shadow-card  |  hover: shadow-hover, translateY(-2px)
-Foto: aspect-ratio 4/3, object-fit cover, bg #F4F4F4
-Padding info: 20px
+Layout: horizontal di semua ukuran — foto kiri, info kanan
+Foto: width clamp(7rem, 30vw, 13rem), aspect-ratio 4/5, object-fit cover, bg #F4F4F4
+Info padding: clamp(0.75rem, 3vw, 1.25rem)
+Info gap: clamp(0.5rem, 2vw, 0.75rem)
+Teks group gap: clamp(0.125rem, 0.8vw, 0.25rem)
+
 Urutan info:
-  1. Merek — text-xs uppercase tracking-widest, color #A1A1AA
-  2. Nama produk — font-weight 600, 16px, color #111118 (tanpa storage di nama, misal "iPhone 15")
-  3. Kondisi — text-xs uppercase font-weight 600, "BARU" navy, "SECOND" abu
-  4. Kualitas opsional — text-xs uppercase font-weight 500, color #A1A1AA (hanya untuk second)
-  5. Storage + garansi — text-xs, color #A1A1AA
-  6. Harga — font-weight 700, 20px, color #111118
-  7. CTA "Tanya Produk" — full-width, radius 10px, amber
+  1. Merek — font-weight 500, clamp(0.625rem, 2.5vw, 0.75rem), tracking-widest uppercase, color #A1A1AA
+  2. Nama produk — font-weight 600, clamp(0.9375rem, 3.8vw, 1.5rem), leading-snug, no line-clamp
+  3. Kondisi — font-weight 600, clamp(0.625rem, 2.5vw, 0.75rem), tracking-widest uppercase
+     "BARU" #1A1A2E, "SECOND" #52525B
+  4. Kualitas — font-weight 500, clamp(0.625rem, 2.5vw, 0.75rem), uppercase, color #A1A1AA
+     Baru → "Brand New", Second → "Mulus" | "Normal"
+  5. Storage + garansi — clamp(0.625rem, 2.5vw, 0.75rem), color #A1A1AA
+  6. Harga — font-weight 700, clamp(0.9375rem, 4vw, 1.5rem), color #111118
+  7. CTA "Tanya Produk" — full-width, radius 10px, amber, font-weight 700,
+     padding clamp(0.5rem, 2vw, 0.625rem), font-size clamp(0.625rem, 2.5vw, 0.875rem)
+
+Grid catalog: 1 kolom, max-width 768px, centered, gap clamp(1rem, 3vw, 1.5rem)
+Semua ukuran dan spacing pakai clamp() agar menyesuaikan layar secara mulus.
 ```
 
 ### Label Kondisi/Tipe
@@ -198,9 +208,9 @@ Scroll reveal: opacity 0 ke 1, translateY 12px ke 0, 350ms ease — CSS @keyfram
 
 ## Layout Grid
 ```
-Mobile:  2 kolom horizontal, padding 16px, gap 16px
-Tablet:  2 kolom, padding 24px
-Desktop: 3-4 kolom, max-width 1280px, margin auto, padding 32px
+Catalog: 1 kolom, max-width 768px, centered, gap clamp(1rem, 3vw, 1.5rem)
+Card horizontal di semua breakpoint
+Semua section: padding responsif clamp / md breakpoint
 ```
 
 ---
