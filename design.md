@@ -179,7 +179,9 @@ Urutan info:
   4. Kualitas — font-weight 500, clamp(0.625rem, 2.5vw, 0.75rem), uppercase, color #A1A1AA
      Baru → "Brand New", Second → "Mulus" | "Normal"
   5. Storage + garansi — clamp(0.625rem, 2.5vw, 0.75rem), color #A1A1AA
-  6. Harga — font-weight 700, clamp(0.9375rem, 4vw, 1.5rem), color #111118
+  6. Harga — font-weight 700, clamp(0.8125rem, 3.5vw, 1.25rem), leading-tight, color #111118
+     Jika ada priceMax: "Rp7.500.000 — Rp7.900.000"
+     Jika tidak: "Rp13.500.000"
   7. CTA "Tanya Produk" — full-width, radius 10px, amber, font-weight 700,
      padding clamp(0.5rem, 2vw, 0.625rem), font-size clamp(0.625rem, 2.5vw, 0.875rem)
 
@@ -256,3 +258,9 @@ Semua section: padding responsif clamp / md breakpoint
 8. **Maksimal 3 warna per komponen** — surface + text + satu aksen.
 9. **Ruang putih adalah elemen desain** — jangan isi semua space.
 10. **Nama produk di card tanpa storage** — tulis "iPhone 15", bukan "iPhone 15 128GB". Storage muncul di baris keterangan tersendiri.
+11. **Harga bisa range** — jika ada `priceMax`, tampilkan "Rp7.500.000 — Rp7.900.000".
+12. **Gap harga ke tombol CTA longgar** — `clamp(0.625rem, 2.5vw, 0.875rem)`.
+
+---
+
+> **FILE INI LOCKED.** Semua perubahan harus melalui persetujuan eksplisit dan diimplementasi serentak di `globals.css`, `page.tsx`, `Catalog.tsx`, dan `ProductCard.tsx`.
