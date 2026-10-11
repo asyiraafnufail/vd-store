@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#0F3460"/>
+  <rect x="140" y="40" width="120" height="200" rx="16" fill="#2a2a4a"/>
+  <rect x="148" y="60" width="104" height="160" rx="8" fill="#F5A623" opacity="0.15"/>
+  <text x="200" y="270" text-anchor="middle" fill="#F5A623" font-size="13" font-family="Arial">Xiaomi 13 256GB</text>
+</svg>
