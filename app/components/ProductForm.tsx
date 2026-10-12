@@ -3,7 +3,8 @@
 import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { uploadProductPhoto } from '@/app/actions/products'
-import { VALID_BRANDS, VALID_CONDITIONS, VALID_QUALITIES, VALID_WARRANTIES, ADMIN_WA_NUMBER, VALIDATION_MESSAGES } from '@/app/lib/constants/validation'
+import { getWANumber } from '@/app/lib/settings'
+import { VALID_BRANDS, VALID_CONDITIONS, VALID_QUALITIES, VALID_WARRANTIES, VALIDATION_MESSAGES } from '@/app/lib/constants/validation'
 import type { Database } from '@/app/lib/supabase'
 
 type Product = Database['public']['Tables']['products']['Row']
@@ -45,7 +46,8 @@ export function ProductForm({ initialData, onSubmit, isLoading }: ProductFormPro
   // Auto-generate WA link saat nama berubah
   useEffect(() => {
     if (formData.name && formData.name.trim()) {
-      const waLink = `https://wa.me/${ADMIN_WA_NUMBER}?text=Halo%20VD%20Phone%20Store%2C%20saya%20tertarik%20dengan%20${encodeURIComponent(formData.name)}`
+      const waNumber = getWANumber()
+      const waLink = `https://wa.me/${waNumber}?text=Halo%20VD%20Phone%20Store%2C%20saya%20tertarik%20dengan%20${encodeURIComponent(formData.name)}`
       setFormData((prev) => ({ ...prev, wa_link: waLink }))
     }
   }, [formData.name])

@@ -39,6 +39,13 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
               >
                 Produk
               </Link>
+              <Link
+                href="/admin/settings"
+                className="font-medium transition-colors duration-200"
+                style={{ color: 'var(--color-text-on-dark)' }}
+              >
+                Pengaturan
+              </Link>
             </nav>
           </div>
 

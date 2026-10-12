@@ -1,7 +1,8 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { ADMIN_WA_NUMBER } from '@/app/lib/constants/validation'
+import { getWANumber } from '@/app/lib/settings'
 import type { Product } from '../data/products'
 
 const fmt = (n: number) =>
@@ -16,13 +17,18 @@ const conditionColor: Record<Product['condition'], string> = {
   Second: 'var(--color-text-secondary)',
 }
 
-function generateWALink(product: Product): string {
+function generateWALink(product: Product, waNumber: string): string {
   const message = `Halo VD Phone Store, saya tertarik dengan ${product.name}, ${product.storage}, Garansi ${product.warranty}`
-  return `https://wa.me/${ADMIN_WA_NUMBER}?text=${encodeURIComponent(message)}`
+  return `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`
 }
 
 export default function ProductCard({ product }: { product: Product }) {
-  const waLink = generateWALink(product)
+  const [waLink, setWaLink] = useState('')
+
+  useEffect(() => {
+    const waNumber = getWANumber()
+    setWaLink(generateWALink(product, waNumber))
+  }, [product])
   return (
     <article
       className="bg-white h-full flex flex-row overflow-hidden transition-all duration-200 hover:-translate-y-0.5"
