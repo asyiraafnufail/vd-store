@@ -164,8 +164,8 @@ export default function ProductCard({ product }: { product: Product }) {
               color: 'var(--color-text-primary)',
             }}
           >
-            {(product as any).price_max
-              ? `${fmt(product.price)} — ${fmt((product as any).price_max)}`
+            {product.price_max
+              ? `${fmt(product.price)} — ${fmt(product.price_max)}`
               : fmt(product.price)}
           </p>
 

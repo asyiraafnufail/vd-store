@@ -5,13 +5,14 @@ export type Product = {
   brand: 'Apple' | 'Samsung'
   storage: string
   condition: 'Baru' | 'Second'
-  quality: 'Mulus' | 'Normal' | 'Brand New'
+  quality: 'Brand New' | 'Mulus' | 'Normal' | 'Bekas Wajar'
   warranty: 'Resmi' | 'Bea Cukai' | 'All Operator'
   price: number
-  priceMax?: number
+  price_max?: number
   /** Path lokal: /products/foto.jpg atau URL CDN: https://res.cloudinary.com/... */
   image: string
-  waLink: string
+  badge?: string
+  wa_link: string
 }
 
 const WA = '6281234567890' // ganti nomor WA toko
@@ -29,7 +30,7 @@ export const products: Product[] = [
     warranty: 'Resmi',
     price: 13_500_000,
     image: '/products/iphone15.svg',
-    waLink: msg('iPhone 15 128GB'),
+    wa_link: msg('iPhone 15 128GB'),
   },
   {
     id: '2',
@@ -40,9 +41,9 @@ export const products: Product[] = [
     quality: 'Mulus',
     warranty: 'Resmi',
     price: 6_200_000,
-    priceMax: 6_500_000,
+    price_max: 6_500_000,
     image: '/products/iphone13.svg',
-    waLink: msg('iPhone 13 128GB'),
+    wa_link: msg('iPhone 13 128GB'),
   },
   {
     id: '3',
@@ -54,7 +55,7 @@ export const products: Product[] = [
     warranty: 'Resmi',
     price: 12_800_000,
     image: '/products/s24.svg',
-    waLink: msg('Samsung Galaxy S24 256GB'),
+    wa_link: msg('Samsung Galaxy S24 256GB'),
   },
   {
     id: '4',
@@ -65,9 +66,9 @@ export const products: Product[] = [
     quality: 'Normal',
     warranty: 'Bea Cukai',
     price: 7_500_000,
-    priceMax: 7_900_000,
+    price_max: 7_900_000,
     image: '/products/s23.svg',
-    waLink: msg('Samsung Galaxy S23 256GB'),
+    wa_link: msg('Samsung Galaxy S23 256GB'),
   },
 ]
 
