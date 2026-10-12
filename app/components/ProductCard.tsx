@@ -12,7 +12,7 @@ const fmt = (n: number) =>
     maximumFractionDigits: 0,
   }).format(n)
 
-const conditionColor: Record<Product['condition'], string> = {
+const conditionColor: Record<string, string> = {
   Baru: 'var(--color-primary)',
   Second: 'var(--color-text-secondary)',
 }

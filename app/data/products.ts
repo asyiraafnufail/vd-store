@@ -2,11 +2,11 @@
 export type Product = {
   id: string
   name: string
-  brand: 'Apple' | 'Samsung'
+  brand: string
   storage: string
-  condition: 'Baru' | 'Second'
-  quality: 'Brand New' | 'Mulus' | 'Normal' | 'Bekas Wajar'
-  warranty: 'Resmi' | 'Bea Cukai' | 'All Operator'
+  condition: string
+  quality: string
+  warranty: string
   price: number
   price_max?: number
   /** Path lokal: /products/foto.jpg atau URL CDN: https://res.cloudinary.com/... */
