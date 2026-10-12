@@ -31,14 +31,27 @@ export default async function Home() {
   const supabase = await createClient()
 
   // Fetch products dari Supabase
-  const { data: products, error } = await supabase
+  const { data, error } = await supabase
     .from('products')
-    .select('*')
+    .select('id, name, brand, storage, condition, quality, warranty, price, price_max, image, badge, wa_link')
     .order('created_at', { ascending: false })
 
-  console.log('🏠 Home page: fetched', products?.length || 0, 'products, error:', error)
+  console.log('🏠 Home page: fetched', data?.length || 0, 'products, error:', error)
 
-  const productsList = products || []
+  const productsList = (data || []).map((p) => ({
+    id: p.id,
+    name: p.name,
+    brand: p.brand,
+    storage: p.storage,
+    condition: p.condition,
+    quality: p.quality,
+    warranty: p.warranty,
+    price: p.price,
+    price_max: p.price_max ?? undefined,
+    image: p.image,
+    badge: p.badge ?? undefined,
+    wa_link: p.wa_link,
+  }))
 
   return (
     <main className="flex flex-col bg-white">
