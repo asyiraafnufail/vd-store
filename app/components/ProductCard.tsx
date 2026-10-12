@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { ADMIN_WA_NUMBER } from '@/app/lib/constants/validation'
 import type { Product } from '../data/products'
 
 const fmt = (n: number) =>
@@ -15,7 +16,13 @@ const conditionColor: Record<Product['condition'], string> = {
   Second: 'var(--color-text-secondary)',
 }
 
+function generateWALink(product: Product): string {
+  const message = `Halo VD Phone Store, saya tertarik dengan ${product.name}, ${product.storage}, Garansi ${product.warranty}`
+  return `https://wa.me/${ADMIN_WA_NUMBER}?text=${encodeURIComponent(message)}`
+}
+
 export default function ProductCard({ product }: { product: Product }) {
+  const waLink = generateWALink(product)
   return (
     <article
       className="bg-white h-full flex flex-row overflow-hidden transition-all duration-200 hover:-translate-y-0.5"
@@ -31,22 +38,33 @@ export default function ProductCard({ product }: { product: Product }) {
         ((e.currentTarget as HTMLElement).style.boxShadow = 'var(--shadow-card)')
       }
     >
-      {/* Foto */}
+      {/* Foto Container — Box dalam Card */}
       <div
-        className="relative flex-shrink-0"
+        className="relative flex-shrink-0 flex items-center justify-center"
         style={{
           width: 'clamp(7rem, 30vw, 13rem)',
           aspectRatio: '4/5',
-          background: 'var(--color-surface-alt)',
+          padding: 'clamp(0.5rem, 2vw, 0.75rem)',
+          background: 'var(--color-surface)',
         }}
       >
-        <Image
-          src={product.image}
-          alt={product.name}
-          fill
-          className="object-cover"
-          sizes="(max-width: 640px) 30vw, 208px"
-        />
+        <div
+          className="relative w-full h-full"
+          style={{
+            background: 'var(--color-surface)',
+            borderRadius: 'var(--radius-md)',
+            overflow: 'hidden',
+            border: '1px solid var(--color-border)',
+          }}
+        >
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            className="object-cover"
+            sizes="(max-width: 640px) 30vw, 208px"
+          />
+        </div>
       </div>
 
       {/* Info */}
@@ -64,7 +82,10 @@ export default function ProductCard({ product }: { product: Product }) {
           {/* Merek */}
           <span
             className="font-medium tracking-widest uppercase"
-            style={{ fontSize: 'clamp(0.625rem, 2.5vw, 0.75rem)', color: 'var(--color-text-muted)' }}
+            style={{
+              fontSize: 'clamp(0.625rem, 2.5vw, 0.75rem)',
+              color: 'var(--color-text-primary)',
+            }}
           >
             {product.brand}
           </span>
@@ -72,7 +93,10 @@ export default function ProductCard({ product }: { product: Product }) {
           {/* Nama */}
           <h3
             className="font-semibold leading-snug"
-            style={{ fontSize: 'clamp(0.9375rem, 3.8vw, 1.5rem)', color: 'var(--color-text-primary)' }}
+            style={{
+              fontSize: 'clamp(0.9375rem, 3.8vw, 1.5rem)',
+              color: 'var(--color-text-primary)',
+            }}
           >
             {product.name}
           </h3>
@@ -80,7 +104,10 @@ export default function ProductCard({ product }: { product: Product }) {
           {/* Kondisi */}
           <span
             className="font-semibold tracking-widest uppercase"
-            style={{ fontSize: 'clamp(0.625rem, 2.5vw, 0.75rem)', color: conditionColor[product.condition] }}
+            style={{
+              fontSize: 'clamp(0.625rem, 2.5vw, 0.75rem)',
+              color: conditionColor[product.condition],
+            }}
           >
             {product.condition}
           </span>
@@ -88,17 +115,35 @@ export default function ProductCard({ product }: { product: Product }) {
           {/* Quality */}
           <span
             className="font-medium uppercase"
-            style={{ fontSize: 'clamp(0.625rem, 2.5vw, 0.75rem)', color: 'var(--color-text-muted)' }}
+            style={{
+              fontSize: 'clamp(0.625rem, 2.5vw, 0.75rem)',
+              color: 'var(--color-text-primary)',
+            }}
           >
             {product.quality}
           </span>
 
           {/* Storage + Garansi */}
           <p
-            style={{ fontSize: 'clamp(0.625rem, 2.5vw, 0.75rem)', color: 'var(--color-text-muted)' }}
+            style={{
+              fontSize: 'clamp(0.625rem, 2.5vw, 0.75rem)',
+              color: 'var(--color-text-primary)',
+            }}
           >
             {product.storage} — Garansi {product.warranty}
           </p>
+
+          {/* Badge */}
+          {product.badge && (
+            <p
+              style={{
+                fontSize: 'clamp(0.625rem, 2.5vw, 0.75rem)',
+                color: 'var(--color-text-primary)',
+              }}
+            >
+              {product.badge}
+            </p>
+          )}
         </div>
 
         {/* Harga + CTA */}
@@ -108,15 +153,18 @@ export default function ProductCard({ product }: { product: Product }) {
         >
           <p
             className="font-bold leading-tight"
-            style={{ fontSize: 'clamp(0.8125rem, 3.5vw, 1.25rem)', color: 'var(--color-text-primary)' }}
+            style={{
+              fontSize: 'clamp(0.8125rem, 3.5vw, 1.25rem)',
+              color: 'var(--color-text-primary)',
+            }}
           >
-            {product.priceMax
-              ? `${fmt(product.price)} — ${fmt(product.priceMax)}`
+            {(product as any).price_max
+              ? `${fmt(product.price)} — ${fmt((product as any).price_max)}`
               : fmt(product.price)}
           </p>
 
           <a
-            href={product.waLink}
+            href={waLink}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center font-bold transition-colors duration-200"

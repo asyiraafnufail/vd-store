@@ -1,6 +1,7 @@
 import Image from 'next/image'
-import { products } from './data/products'
+import { createClient } from '@/app/lib/supabase/server'
 import Catalog from './components/Catalog'
+import type { Database } from '@/app/lib/supabase'
 
 const WA_LINK =
   'https://wa.me/6281234567890?text=Halo%20VD%20Phone%20Store%2C%20saya%20ingin%20bertanya%20tentang%20produk'
@@ -26,7 +27,19 @@ const testimonials = [
 
 const divider = { borderTop: '1px solid var(--color-border)' }
 
-export default function Home() {
+export default async function Home() {
+  const supabase = await createClient()
+
+  // Fetch products dari Supabase
+  const { data: products, error } = await supabase
+    .from('products')
+    .select('*')
+    .order('created_at', { ascending: false })
+
+  console.log('🏠 Home page: fetched', products?.length || 0, 'products, error:', error)
+
+  const productsList = products || []
+
   return (
     <main className="flex flex-col bg-white">
 
@@ -150,7 +163,7 @@ export default function Home() {
 
       {/* KATALOG */}
       <section className="bg-white" style={divider}>
-        <Catalog products={products} />
+        <Catalog products={productsList} />
       </section>
 
       {/* CARA BELI */}

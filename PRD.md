@@ -1,6 +1,5 @@
 # PRD — VD Phone Store
-
-## Tujuan
+> **STATUS: LOCKED — 2026-10-12** — Fitur core finalized. Jangan ubah requirements tanpa diskusi.
 Landing page katalog HP second untuk **VD Phone Store**. Target: tampilkan produk, bangun kepercayaan, dorong kontak (WhatsApp). Dilengkapi admin panel terpisah untuk mengelola data produk, foto, dan autentikasi via Supabase.
 
 ---

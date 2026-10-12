@@ -11,13 +11,16 @@ const nextConfig: NextConfig = {
         hostname: 'res.cloudinary.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'oqypdeajxexlocexyjjw.supabase.co',
+        pathname: '/storage/v1/object/public/**',
+      },
     ],
   },
   experimental: {
     agentFeedback: true,
   },
-  cacheComponents: true,
-  partialPrefetching: true,
   turbopack: {
     rules: {
       "*.css": {

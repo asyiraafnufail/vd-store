@@ -64,11 +64,7 @@ create policy "Authenticated can delete testimonials"
 on public.testimonials for delete
 using (auth.role() = 'authenticated');
 
--- Storage RLS for bucket 'photos'
-insert into storage.buckets (id, name, public)
-values ('photos', 'photos', true)
-on conflict do nothing;
-
+-- Storage RLS for bucket 'photos' (bucket sudah dibuat manual, hanya setup policies)
 create policy "Public can view photos"
 on storage.objects for select
 using (bucket_id = 'photos');

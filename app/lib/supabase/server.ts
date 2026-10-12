@@ -2,6 +2,8 @@ import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import type { Database } from './database.types'
 
+export const ADMIN_WA_NUMBER = '6281234567890' // ganti dengan nomor WA toko
+
 export async function createClient() {
   const cookieStore = await cookies()
 
@@ -26,4 +28,8 @@ export async function createClient() {
       },
     }
   )
+}
+
+export function generateWALink(productName: string) {
+  return `https://wa.me/${ADMIN_WA_NUMBER}?text=Halo%20VD%20Phone%20Store%2C%20saya%20tertarik%20dengan%20${encodeURIComponent(productName)}`
 }
